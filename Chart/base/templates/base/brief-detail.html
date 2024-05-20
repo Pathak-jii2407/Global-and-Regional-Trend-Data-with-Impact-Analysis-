@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Object</title>
+  <style>
+    /* Responsive styles for different screen sizes */
+    @media only screen and (max-width: 768px) {
+      .detail-container {
+        grid-template-columns: 1fr; /* Single column for small screens */
+      }
+      table {
+        width: 100%; /* Ensure table fills available width on small screens */
+      }
+      th, td {
+        font-size: smaller; /* Adjust font size for better readability on small screens */
+      }
+    }
+
+    table, th, td {
+      border-collapse: collapse;
+      cursor:pointer;
+    }
+    th {
+      text-align: left;
+      background-color: #eee;
+      padding: 5px;
+    }
+    td {
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+        <center> <h3>{{detail_object.title}}</h3> </center>
+        <hr>
+  <div>
+    <table>
+      <tr>
+        <th>ID</th>
+        <td>{{detail_object.id}}</td>
+      </tr>
+      <tr>
+        <th>End Year</th>
+        <td>{{detail_object.iend_year}}</td>
+      </tr>
+      <tr>
+        <th>Intensity</th>
+        <td>{{detail_object.intensity}}</td>
+      </tr>
+      <tr>
+        <th>Sector</th>
+        <td>{{detail_object.sector}}</td>
+      </tr>
+      <tr>
+        <th>Topic</th>
+        <td>{{detail_object.topic}}</td>
+      </tr>
+      <tr>
+        <th>Insight</th>
+        <td>{{detail_object.insight}}</td>
+      </tr>
+      <tr>
+        <th>URL</th>
+        <td><a href="{{detail_object.url}}">{{detail_object.url}}</a></td>
+      </tr>
+      <tr>
+        <th>Region</th>
+        <td>{{detail_object.region}}</td>
+      </tr>
+      <tr>
+        <th>Start Year</th>
+        <td>{{detail_object.start_year}}</td>
+      </tr>
+      <tr>
+        <th>Impact</th>
+        <td>{{detail_object.impact}}</td>
+      </tr>
+      <tr>
+        <th>Added</th>
+        <td>{{detail_object.added}}</td>
+      </tr>
+      <tr>
+        <th>Published</th>
+        <td>{{detail_object.published}}</td>
+      </tr>
+      <tr>
+        <th>Country</th>
+        <td>{{detail_object.country}}</td>
+      </tr>
+      <tr>
+        <th>Relevance</th>
+        <td>{{detail_object.relevance}}</td>
+      </tr>
+      <tr>
+        <th>Likelihood</th>
+        <td>{{detail_object.likelihood}}</td>
+      </tr>
+      <tr>
+        <th>Source</th>
+        <td>{{detail_object.source}}</td>
+      </tr>
+      <tr>
+        <th>PESTLE</th>
+        <td>{{detail_object.pestle}}</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

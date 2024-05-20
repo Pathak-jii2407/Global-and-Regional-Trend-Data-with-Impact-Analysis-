@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard data</title>
+  <style>
+    .links-container{
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="links-container">
+    {% for info in data %}
+      <a href="brief-detail/{{ d.id }}" style="text-decoration: none;">
+        <ul><li>{{ info.id }} &nbsp;{{ info.title }}</li></ul>
+      </a>
+      <hr>
+    {% endfor %}
+  </div>
+  
+</body>
+</html>
