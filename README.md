@@ -1,0 +1,1 @@
+# Global-and-Regional-Trend-Data-with-Impact-Analysis-
