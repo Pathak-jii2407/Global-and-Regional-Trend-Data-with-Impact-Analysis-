@@ -1,4 +1,6 @@
 {% load static %}
+{% csrf_token %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,13 +47,64 @@
         .image-logo{
             padding-right:100px;  
         }
+        
+        .beautified-footer {
+            background-color: #f5f5f5; /* Light gray background */
+            padding: 20px;
+            display: flex; /* Organize content horizontally */
+            justify-content: space-between; /* Distribute content evenly */
+            align-items: center; /* Vertically align elements */
+            font-family: Arial, sans-serif; /* Clean and modern font */
+          }
+          
+          .subscriber-count {
+            margin-right: 20px; /* Spacing between count and form */
+            display: flex; /* Allow inline styling for "You Achieved" */
+            align-items: center; /* Vertically align heading and count */
+          }
+          
+          .subscriber-count h1 {
+            font-size: 18px; /* Adjust heading size */
+            margin: 0; /* Remove default margin */
+          }
+          
+          .subscriber-count span {
+            font-size: 16px; /* Consistent font size */
+            margin-left: 5px; /* Spacing between label and count */
+          }
+          
+          .achievement {
+            color: green; /* Green for achievement highlight */
+          }
+          
+          .subscribe-form {
+            display: flex; /* Align button and input horizontally */
+            gap: 10px; /* Spacing between input and button */
+          }
+          
+          .subscribe-form input {
+            padding: 10px;
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 3px; /* Rounded corners */
+            font-size: 16px; /* Consistent font size */
+          }
+          
+          .subscribe-form button {
+            background-color: #3498db; /* Blue button color */
+            color: white; /* White text for contrast */
+            padding: 10px 20px; /* Button padding */
+            border: none;
+            border-radius: 3px; /* Rounded corners */
+            cursor: pointer; /* Indicate clickable button */
+          }
+          
     </style>
 
 </head>
 <body>
     <div class="container">
         <h2>Dashboard</h2>
-        <p>Welcome to our interactive dashboard showcasing various data visualizations.</p>
+        <p>Welcome{%if name is not none%},<b>{{name}}</b>{%endif%} to our interactive dashboard showcasing various data visualizations.</p>
 
         <a href="pie_chart" class="chart-link">
             <h3>Pie Chart</h3>
@@ -102,7 +155,25 @@
         </div>
         <hr>
     </div>
-    
+
+    <footer class="beautified-footer">
+        <div class="subscriber-count">
+          
+          <span {% if subscriber_count %}<h1>Number of Subscribers > </h1>{{ subscriber_count }}</span>
+            <span class="achievement">You Achieved: </span>
+          {% endif %}
+        </div>
+        {% if subscriber_count %}
+        <a href='get_data' style='text-decoration:none;'>show data</a>
+        {% endif %}
+        <form class="subscribe-form" action="{% url 'subscribe' %}" method="post">
+          {% csrf_token %}
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </footer>
+      
+
 </body>
 </html>
 
