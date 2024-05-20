@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bar Graph - Impact by Region</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(fetchImpactData);
+
+        function fetchImpactData() {
+            fetch("/get_impact_by_region/")
+                .then(response => response.json())
+                .then(data => drawImpactChart(data))
+                .catch(error => console.error('Error fetching impact data:', error));
+        }
+
+        function drawImpactChart(data) {
+            var chartData = new google.visualization.DataTable();
+            chartData.addColumn('string', 'Region');
+            chartData.addColumn('number', 'Impact');
+
+            data.forEach(entry => {
+                chartData.addRow([entry.region, entry.impact]);
+            });
+
+            var options = {
+                title: 'Impact by Region',
+                chartArea: {width: '50%'},
+                hAxis: {
+                    title: 'Impact',
+                    minValue: 0
+                },
+                vAxis: {
+                    title: 'Region'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('impact_chart'));
+            chart.draw(chartData, options);
+        }
+    </script>
+</head>
+<body>
+    <div id="impact_chart" style="width: 900px; height: 500px;"></div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'imgs\artboard_123065.ico' %}" type="image/x-icon" />
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+        }
+        p {
+            color: #666;
+        }
+        .chart-link {
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        .chart-link:hover {
+            text-decoration: underline;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dashboard</h2>
+        <p>Welcome to our interactive dashboard showcasing various data visualizations.</p>
+
+        <a href="pie_chart" class="chart-link">
+            <h3>Pie Chart</h3>
+            <p>View distribution of data in a pie chart format.</p>
+            
+        </a><div class="image-logo">
+            {%include "base/pie_chart.html"%}
+        </div>
+        <hr>
+
+        <a href="impact_by_region" class="chart-link">
+            <h3>Impact by Region</h3>
+            <p>Explore the impact of different regions on the data.</p>
+        </a><div class="image-logo">
+            {%include "base/impact_by_region.html"%}
+        </div>
+        <hr>
+
+        <a href="intensity_by_sector" class="chart-link">
+            <h3>Intensity by Sector</h3>
+            <p>Analyze the intensity of various sectors in the dataset.</p>
+        </a><div class="image-logo">
+            {%include "base/intensity_by_sector.html"%}
+        </div>
+        <hr>
+
+        <a href="likelihood_by_sector" class="chart-link">
+            <h3>Likelihood by Sector</h3>
+            <p>Discover the likelihood of events occurring across different sectors.</p>
+        </a><div class="image-logo">
+            {%include "base/likelihood_by_sector.html"%}
+        </div>
+        <hr>
+
+        <a href="relevance_by_country" class="chart-link">
+            <h3>Relevance by Country</h3>
+            <p>Examine the relevance of data based on different countries.</p>
+        </a><div class="image-logo">
+            {%include "base/relevance_by_country.html"%}
+        </div>
+        <hr>
+
+        <a href="trends_over_years" class="chart-link">
+            <h3>Trends Over Years</h3>
+            <p>Track the trends and changes over multiple years.</p>
+        </a><div class="image-logo">
+            {%include "base/trends_over_years.html"%}
+        </div>
+        <hr>
+    </div>
+</body>
+</html>

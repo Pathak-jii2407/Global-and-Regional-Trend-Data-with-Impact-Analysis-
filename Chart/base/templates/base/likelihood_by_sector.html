@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bar Graph - Likelihood by Sector</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(fetchLikelihoodData);
+
+        function fetchLikelihoodData() {
+            fetch("/get_likelihood_by_sector/")
+                .then(response => response.json())
+                .then(data => drawLikelihoodChart(data))
+                .catch(error => console.error('Error fetching likelihood data:', error));
+        }
+
+        function drawLikelihoodChart(data) {
+            var chartData = new google.visualization.DataTable();
+            chartData.addColumn('string', 'Sector');
+            chartData.addColumn('number', 'Likelihood');
+
+            data.forEach(entry => {
+                chartData.addRow([entry.sector, entry.likelihood]);
+            });
+
+            var options = {
+                title: 'Likelihood by Sector',
+                chartArea: {width: '50%'},
+                hAxis: {
+                    title: 'Likelihood',
+                    minValue: 0
+                },
+                vAxis: {
+                    title: 'Sector'
+                }
+            };
+
+            var chart = new google.visualization.BarChart(document.getElementById('likelihood_chart'));
+            chart.draw(chartData, options);
+        }
+    </script>
+</head>
+<body>
+    <div id="likelihood_chart" style="width: 900px; height: 500px;"></div>
+</body>
+</html>
