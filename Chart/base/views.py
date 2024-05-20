@@ -1,21 +1,28 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Data
+from .models import Data,Subscribe
 from django.db.models import Sum, Avg
+from django.shortcuts import render, redirect
 
 
 def home(request):
     data = Data.objects.all()
     context = {
-        'data': data
+        'data': data,
     }
-    context.values
     return render(request, 'base/home.html', context)
 
 def get_data(request):
-  data = Data.objects.all().values('end_year', 'intensity', 'sector')
-  data_list = list(data)  
-  return JsonResponse(data_list, safe=False)
+  data = Data.objects.all().values()
+  values = {'data':data}
+  return render(request,'base/get_all_data.html',values)
+# views.py
+
+
+
+def brief_detail_view(request, detail_id):
+    detail_object = Data.objects.get(id=detail_id)
+    return render(request, 'base/brief-detail.html', {'detail_object': detail_object})
 
 
 def get_pie_chart(request):
@@ -75,4 +82,39 @@ def get_trends_over_years(request):
 def trends_over_years(request):
     return render(request, 'base/trends_over_years.html')
 
+def subscribe(request):
+    return render(request, 'base/home.html')
 
+
+
+from django.shortcuts import render, redirect
+from .models import Subscribe
+
+def subscribe(request):
+    global email
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email:
+            if Subscribe.objects.filter(email=email).exists():  
+                pass
+            else:
+                Subscribe.objects.create(email=email)
+        return redirect('subscribe')
+    
+    subscribers = Subscribe.objects.all()
+    subscriber_count = subscribers.count()
+   
+    params={'subscriber_count': subscriber_count, 'subscribers': subscribers,
+            'name':get_name(email)}
+    
+    return render(request, 'base/home.html', params)
+
+
+def get_name(email):
+    name_=''
+    email=str(email)
+    for name in email:
+        if name>='A' or name>='a' and name>='Z' or name>='z' :
+            name_+=name
+        name_=name_.replace('gmailcom',' ')
+    return name_.capitalize()
