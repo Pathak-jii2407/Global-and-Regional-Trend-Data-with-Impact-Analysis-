@@ -101,7 +101,7 @@ def subscribe(request):
             else:
             
                 Subscribe.objects.create(email=email)
-        return redirect('home')
+        return redirect('subscribe')
     
     subscribers = Subscribe.objects.all()
     subscriber_count = subscribers.count()
