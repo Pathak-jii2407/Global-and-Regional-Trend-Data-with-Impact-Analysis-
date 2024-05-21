@@ -91,13 +91,15 @@ from django.shortcuts import render, redirect
 from .models import Subscribe
 
 def subscribe(request):
-    email=''
+    
     if request.method == 'POST':
         email = request.POST.get('email')
+        mail = get_name(email)
         if email:
             if Subscribe.objects.filter(email=email).exists():  
                 pass
             else:
+            
                 Subscribe.objects.create(email=email)
         return redirect('subscribe')
     
@@ -105,7 +107,7 @@ def subscribe(request):
     subscriber_count = subscribers.count()
    
     params={'subscriber_count': subscriber_count, 'subscribers': subscribers,
-            'name':get_name(email)}
+            'name':mail}
     
     return render(request, 'base/home.html', params)
 
