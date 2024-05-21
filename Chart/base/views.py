@@ -91,7 +91,7 @@ from django.shortcuts import render, redirect
 from .models import Subscribe
 
 def subscribe(request):
-    global email
+    email=None
     if request.method == 'POST':
         email = request.POST.get('email')
         if email:
