@@ -14,10 +14,12 @@
 
   <div class="links-container">
     {% for info in data %}
-      <a href="brief-detail/{{ info.id }}";">
+    <span style="text-decoration:none;">
+      <a href="brief-detail/{{ info.id }}">
         <ul><li> {{ info.id }} &nbsp;{{ info.title }}</li></ul>
       </a>
       <hr>
+      </span>
     {% endfor %}
   </div>
   
