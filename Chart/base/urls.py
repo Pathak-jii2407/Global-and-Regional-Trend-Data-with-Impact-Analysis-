@@ -17,7 +17,7 @@ urlpatterns = [
     path('impact_by_region/', views.impact_by_region, name='impact_by_region'),
     path('get_trends_over_years/', views.get_trends_over_years, name='get_trends_over_years'),
     path('trends_over_years/', views.trends_over_years, name='trends_over_years'),
-    path('subscribe/', views.subscribe, name='subscribe'),
+    path('subscribe', views.subscribe, name='subscribe'),
 
 
 ]
