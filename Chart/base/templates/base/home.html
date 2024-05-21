@@ -101,6 +101,7 @@
     </style>
 
 </head>
+    {% csrf_token %}
 <body>
     <div class="container">
         <h2>Dashboard</h2>
@@ -155,7 +156,7 @@
         </div>
         <hr>
     </div>
-
+    {% csrf_token %}
     <footer class="beautified-footer">
         <div class="subscriber-count">
           
@@ -169,6 +170,7 @@
         <form class="subscribe-form" action="{% url 'subscribe' %}" method="post">
           {% csrf_token %}
           <input type="email" name="email" placeholder="Enter your email" required>
+            {% csrf_token %}
           <button type="submit">Subscribe</button>
         </form>
       </footer>
