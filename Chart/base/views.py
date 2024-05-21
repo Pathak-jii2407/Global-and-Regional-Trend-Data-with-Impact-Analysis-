@@ -93,8 +93,8 @@ from .models import Subscribe
 def subscribe(request):
     
     if request.method == 'POST':
-        email = request.POST.get('email')
-        mail = get_name(email)
+        global email
+        email = request.POST.get('email',' ')
         if email:
             if Subscribe.objects.filter(email=email).exists():  
                 pass
@@ -107,7 +107,7 @@ def subscribe(request):
     subscriber_count = subscribers.count()
    
     params={'subscriber_count': subscriber_count, 'subscribers': subscribers,
-            'name':mail}
+            'name':get_name(email)}
     
     return render(request, 'base/home.html', params)
 
